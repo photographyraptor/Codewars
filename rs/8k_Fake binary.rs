@@ -13,6 +13,6 @@ fn fake_bin(s: &str) -> String {
             result.push('1');
         }
     }
-    
+
     return result;
 }
