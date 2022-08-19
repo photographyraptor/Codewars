@@ -12,5 +12,5 @@ fn dna_to_rna(dna: &str) -> String {
             res.push(d);
         }
     }
-    return res;    
+    return res;
 }
