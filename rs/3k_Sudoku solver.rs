@@ -17,7 +17,7 @@ fn sudoku_rec(puzzle: &mut [[u8; 9]; 9]) -> bool {
     for i in 0..9 {
         for j in 0..9 {
             if puzzle[i as usize][j as usize] == 0 {
-                //println!("{},{}   ", i, j);
+                println!("FINDING: {},{}: ", i, j);
                 pos = Vec::new();
                 pos_h = hor(*puzzle, [i, j]);
                 pos_v = ver(*puzzle, [i, j]);
@@ -26,7 +26,7 @@ fn sudoku_rec(puzzle: &mut [[u8; 9]; 9]) -> bool {
                 for o in pos_h {
                     if pos_v.contains(&o) && pos_s.contains(&o) {
                         pos.push(o);
-                        //print!("{},", o);
+                        println!("   p: {}", o);
                     }
                 }
                 
@@ -46,7 +46,6 @@ fn sudoku_rec(puzzle: &mut [[u8; 9]; 9]) -> bool {
                 }
             }
         }
-        println!("----------");
     }
     return true;
 }
@@ -57,7 +56,6 @@ fn hor(puzzle: [[u8; 9]; 9], pos: [u8; 2]) -> Vec<u8> {
     let line = puzzle[pos[0] as usize];
     
     for i in 0..9 {
-        //print!("{}-{} ",pos[0], i);
         if !line.contains(&i) {
             v.push(i);
         }
@@ -75,10 +73,8 @@ fn ver(puzzle: [[u8; 9]; 9], pos: [u8; 2]) -> Vec<u8> {
         line.push(puzzle[i as usize][pos[1] as usize]);
     }
     
-    println!("");
     for i in 1..9 {   
         if !line.contains(&i) {
-            //print!("{} ",i);
             v.push(i);
         }
     }
@@ -118,7 +114,6 @@ fn sqr(puzzle: [[u8; 9]; 9], pos: [u8; 2]) -> Vec<u8> {
         for j in &vp {
             val = puzzle[i as usize][*j as usize];
             if val > 0 {
-                //print!("{},{}->{}  ",i, j, val);
                 sqr.push(val);   
             }
         }
