@@ -12,8 +12,8 @@ You can find some examples in the test fixtures.
 fn make_readable(seconds: u32) -> String {
     let mut s = String::new();
     let hor = seconds / 3600;
-    let min = (seconds % 3600) / 60;
-    let sec = seconds % 60;
+    let min = seconds % 3600 / 60;
+    let sec = seconds % 3600 % 60;
     
     s.push_str(&timeToStr(hor));
     s.push(':');
