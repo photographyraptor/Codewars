@@ -29,11 +29,29 @@ namespace Solution {
     }
     
     private static List<List<int>> GetHorizontals(int[,] field) {
+      
+      for(var i=0; i<10; i++) {
+        for(var j=0; j<10; j++) {
+          if(field[i,j] == 1) {
+            
+          }
+        }
+      }
+      
+      
       return new List<List<int>>();
     }
     
     
     private static List<List<int>> GetVerticals(int[,] field) {
+      
+      for(var j=0; j<10; j++) {
+        for(var i=0; i<10; i++) {
+          if(field[i,j] == 1) {
+            
+          }
+        }
+      }
       return new List<List<int>>();
     }
     
