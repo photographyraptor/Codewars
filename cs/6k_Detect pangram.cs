@@ -12,9 +12,10 @@ public static class Kata
   public static bool IsPangram(string str)
   {
     var alphabet = "abcdefghirjklmnopqstuvwyz";
+    var charArr = str.ToLower().ToCharArray();
     
     foreach(var letter in alphabet) {
-      if (!str.ToLower().ToCharArray().Any(a => a == letter)) return false;
+      if (!charArr.Any(a => a == letter)) return false;
     }
     
     return true;
