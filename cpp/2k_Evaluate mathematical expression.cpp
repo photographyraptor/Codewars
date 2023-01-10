@@ -45,34 +45,40 @@ You do not need to worry about validation - you will only receive valid mathemat
 #include <string>
 #include <stdlib.h>
 
-bool isNotResolved(std::string exp) {
-  if (exp == "") {
+bool isResolved(std::string* exp) {
+  std::string::const_iterator it = exp->begin();
+  while (it != exp->end() && std::isdigit(*it)) ++it;
+  if (!exp->empty() && it == exp->end()) {
     return true;
   }
   return false;
 }
 
-std::string calcExpresion(std::string exp) {
-  std::cout << exp << std::endl;
-  if (isNotResolved(exp)) {
-    return calcExpresion("");  
-  }
-  
-  return exp;
+void simplifyExpression(std::string* exp) {
+  *exp = "22";
+  //look for number +-/* number en un regex, resolver y modificar exp
+  //falta prioridad entre ()
 }
 
-std::string trimExpression(std::string exp) {
-  std::cout << exp << std::endl;
-  exp.erase(std::remove_if(exp.begin(), exp.end(),
+void calcExpresion(std::string* exp) {
+  std::cout << *exp << std::endl;
+  if (!isResolved(exp)) {
+    simplifyExpression(exp);
+    calcExpresion(exp);
+  }
+}
+
+void trimExpression(std::string* exp) {
+  std::cout << *exp << std::endl;
+  exp->erase(std::remove_if(exp->begin(), exp->end(),
                             [](char c) {
-                                return (c == ' ' || c == '\n' || c == '\r' ||
-                                        c == '\t' || c == '\v' || c == '\f');
+                                return (c == ' ');
                             }),
-                            exp.end());
-  return exp;
+                            exp->end());
 }
 
 double calc(std::string exp) {
-  exp = trimExpression(exp);
-  return atof(calcExpresion(exp).c_str());
+  trimExpression(&exp);
+  calcExpresion(&exp);
+  return atof(exp.c_str());
 }
